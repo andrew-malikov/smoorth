@@ -1,8 +1,100 @@
-/*
+.cm-selectionBackground::selection {
+	background-color: transparent;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.markdown-source-view.mod-cm6 ::selection {
+	background-color: transparent;
+}
 
-If your plugin does not need CSS, delete this file.
+.markdown-source-view.mod-cm6 .cm-selectionBackground:first-child {
+	background: var(--text-selection) !important;
+	border: 0 solid transparent;
+	border-radius: 0.3em;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
 
-*/
+.markdown-source-view.mod-cm6 .cm-selectionBackground:nth-child(2) {
+	background: var(--text-selection) !important;
+	border: 0 solid transparent;
+	border-radius: 0.3em;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-selectionBackground:last-child {
+	background: var(--text-selection) !important;
+	border: 0 solid transparent;
+	border-radius: 0.3em;
+	border-top-right-radius: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-selectionBackground:nth-child(3) {
+	background: var(--text-selection) !important;
+	border: 0 solid transparent;
+	border-radius: 0.3em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-selectionBackground:only-child {
+	background: var(--text-selection) !important;
+	border: 0 solid transparent;
+	border-radius: 0.3em;
+}
+
+.cm-vimCursorLayer .cm-fat-cursor {
+	border: 0 solid #ff9696;
+	border-radius: 0.4em !important;
+	outline: solid var(--interactive-accent);
+	outline-width: 0.1em;
+	color: var(--text-on-accent) !important;
+	transition: all 80ms;
+}
+
+.cm-editor .cm-scroller .cm-cursorLayer .cm-cursor {
+	border: 0 solid #ff9696;
+	border-radius: 0.1em;
+	outline: solid var(--interactive-accent);
+	outline-width: 0.1em;
+	color: var(--text-on-accent) !important;
+	transition: all 80ms;
+}
+
+.cm-cursorLayer,
+.cm-vimCursorLayer {
+	animation: cursor-phase 0.5s ease-in-out 0s infinite alternate !important;
+}
+
+@keyframes cursor-smooth {
+	0%,
+	20% {
+		opacity: 1;
+	}
+	60%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes cursor-phase {
+	0%,
+	20% {
+		opacity: 1;
+	}
+	90%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes cursor-expand {
+	0%,
+	20% {
+		transform: scaleY(1);
+	}
+	80%,
+	100% {
+		transform: scaleY(0);
+	}
+}

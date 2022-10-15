@@ -1,4 +1,4 @@
-# Obsidian Sample Plugin
+# Smoorth
 
 This is a sample plugin for Obsidian (https://obsidian.md).
 
