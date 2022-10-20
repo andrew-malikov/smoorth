@@ -1,4 +1,4 @@
-.cm-selectionBackground::selection {
+/* .cm-selectionBackground::selection {
 	background-color: transparent;
 }
 
@@ -45,7 +45,7 @@
 
 .cm-vimCursorLayer .cm-fat-cursor {
 	border: 0 solid #ff9696;
-	border-radius: 0.4em !important;
+	border-radius: 0.1em !important;
 	outline: solid var(--interactive-accent);
 	outline-width: 0.1em;
 	color: var(--text-on-accent) !important;
@@ -64,7 +64,7 @@
 .cm-cursorLayer,
 .cm-vimCursorLayer {
 	animation: cursor-phase 0.5s ease-in-out 0s infinite alternate !important;
-}
+} */
 
 @keyframes cursor-smooth {
 	0%,

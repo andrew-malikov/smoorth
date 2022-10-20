@@ -1,8 +1,8 @@
 {
 	"id": "smoorth",
 	"name": "Smoorth",
-	"version": "1.0.0",
-	"minAppVersion": "0.16.0",
+	"version": "1.0.1",
+	"minAppVersion": "1.0.1",
 	"description": "A smooth and round caret.",
 	"author": "Andrew Malikov",
 	"authorUrl": "https://github.com/VallanDeMorty",
