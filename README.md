@@ -29,7 +29,7 @@ Replaces the default Obsidian caret with a smooth and round one. Works best with
 ## How to use
 
 - Clone this repo.
-- `pnpm insrall` to install dependencies
+- `pnpm install` to install dependencies
 - `pnpm dev` to start compilation in watch mode.
 
 ## Manually installing the plugin
