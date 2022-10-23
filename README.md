@@ -18,9 +18,14 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
  <img src="./assets/dark_03.png" width="256">
 </p>
 
-<p align="center">
- <img src="./assets/light_01.png" width="512">
-</p>
+<div align="center">
+	
+| Dark | Light |
+| - | - |
+| <video src="https://user-images.githubusercontent.com/35894527/197403985-435c6bff-1004-4b6b-b3bb-3ab13a8ab4c2.mov"></video> | <video src="https://user-images.githubusercontent.com/35894527/197403980-884bda0d-0ba1-4b59-8f2e-f1454f959635.mov"></video> |
+
+</div>
+
 
 ## Features
 
@@ -31,8 +36,6 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 
 - Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into functional style while cursor is fully based on Obsidian's one.
 - [The blink animation](https://easings.net/#easeInOutCirc).
-
----
 
 ## Releasing new releases
 
