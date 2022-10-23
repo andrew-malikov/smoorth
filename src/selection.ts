@@ -15,8 +15,6 @@ import {
 	Direction,
 } from "@codemirror/view";
 
-const CanHidePrimary = true;
-
 // Added to selection rectangles vertical extent to prevent rounding
 // errors from introducing gaps in the rendered content.
 const enum C {
@@ -75,9 +73,7 @@ export function drawSelection(config: SelectionConfig = {}): Extension {
 	];
 }
 
-type Measure = { rangePieces: Piece[]; cursors: Piece[] };
-
-type Size = { top: number; bottom: number; left: number; right: number };
+type Measure = { rangePieces: Piece[] };
 
 class Piece {
 	private borderRadius = ["0.2em", "0.2em", "0.2em", "0.2em"];
@@ -94,7 +90,7 @@ class Piece {
 		this.className = `${this.className} ${className}`;
 	}
 
-	recalculateStyle(piece: Piece) {
+	recalculateStyleRelativeTo(piece: Piece) {
 		if (this.top < piece.top) {
 			if (
 				this.left >= piece.left + piece.width ||
@@ -118,21 +114,26 @@ class Piece {
 	}
 
 	draw() {
-		let elt = document.createElement("div");
-		elt.className = this.className;
-		this.adjust(elt);
-		return elt;
+		let element = document.createElement("div");
+		element.className = this.className;
+		return this.adjust(element);
 	}
 
-	adjust(elt: HTMLElement) {
-		elt.style.borderRadius = this.borderRadius.join(" ");
-		elt.style.left = this.left + "px";
-		elt.style.top = this.top + "px";
-		if (this.width >= 0) elt.style.width = this.width + "px";
-		elt.style.height = this.height + "px";
+	adjust(element: HTMLElement): HTMLElement {
+		element.style.borderRadius = this.borderRadius.join(" ");
+
+		element.style.left = this.left + "px";
+		element.style.top = this.top + "px";
+
+		if (this.width >= 0) {
+			element.style.width = this.width + "px";
+		}
+		element.style.height = this.height + "px";
+
+		return element;
 	}
 
-	eq(p: Piece) {
+	equal(p: Piece) {
 		return (
 			this.left == p.left &&
 			this.top == p.top &&
@@ -147,39 +148,37 @@ class Piece {
 	}
 }
 
+const DEFAULT_SELECTION_LAYER = ".cm-selectionLayer";
 const drawSelectionPlugin = ViewPlugin.fromClass(
 	class {
 		rangePieces: readonly Piece[] = [];
-		cursors: readonly Piece[] = [];
 		measureReq: { read: () => Measure; write: (value: Measure) => void };
 		selectionLayer: HTMLElement;
-		cursorLayer: HTMLElement;
 
 		constructor(readonly view: EditorView) {
 			this.measureReq = {
 				read: this.readPos.bind(this),
-				write: this.drawSel.bind(this),
+				write: this.drawSelection.bind(this),
 			};
-			this.selectionLayer = view.scrollDOM.appendChild(
-				document.createElement("div")
-			);
-			this.selectionLayer.className = "cm-selectionLayer";
-			this.selectionLayer.setAttribute("aria-hidden", "true");
-			this.cursorLayer = view.scrollDOM.appendChild(
-				document.createElement("div")
-			);
-			this.cursorLayer.className = "cm-cursorLayer";
-			this.cursorLayer.setAttribute("aria-hidden", "true");
-			view.requestMeasure(this.measureReq);
-			this.setBlinkRate();
-		}
 
-		setBlinkRate() {
-			this.cursorLayer.style.animationDuration =
-				this.view.state.facet(selectionConfig).cursorBlinkRate + "ms";
+			const existingSelectionLayer =
+				view.dom.querySelector(".cm-selectionLayer");
+			if (existingSelectionLayer instanceof HTMLElement) {
+				this.selectionLayer = existingSelectionLayer;
+				view.requestMeasure(this.measureReq);
+			}
 		}
 
 		update(update: ViewUpdate) {
+			if (!this.selectionLayer) {
+				const existingSelectionLayer = update.view.dom.querySelector(
+					DEFAULT_SELECTION_LAYER
+				);
+				if (existingSelectionLayer instanceof HTMLElement) {
+					this.selectionLayer = existingSelectionLayer;
+				}
+			}
+
 			let confChanged =
 				update.startState.facet(selectionConfig) !=
 				update.state.facet(selectionConfig);
@@ -190,12 +189,6 @@ const drawSelectionPlugin = ViewPlugin.fromClass(
 				update.viewportChanged
 			)
 				this.view.requestMeasure(this.measureReq);
-			if (update.transactions.some((tr) => tr.scrollIntoView))
-				this.cursorLayer.style.animationName =
-					this.cursorLayer.style.animationName == "cm-blink"
-						? "cm-blink2"
-						: "cm-blink";
-			if (confChanged) this.setBlinkRate();
 		}
 
 		readPos(): Measure {
@@ -212,62 +205,60 @@ const drawSelectionPlugin = ViewPlugin.fromClass(
 				case 1:
 					break;
 				case 2:
-					actualRangePieces[0].recalculateStyle(actualRangePieces[1]);
-					actualRangePieces[1].recalculateStyle(actualRangePieces[0]);
+					actualRangePieces[0].recalculateStyleRelativeTo(
+						actualRangePieces[1]
+					);
+					actualRangePieces[1].recalculateStyleRelativeTo(
+						actualRangePieces[0]
+					);
 					break;
 				case 3:
-					actualRangePieces[0].recalculateStyle(actualRangePieces[1]);
-					actualRangePieces[1].recalculateStyle(actualRangePieces[0]);
-					actualRangePieces[1].recalculateStyle(actualRangePieces[2]);
-					actualRangePieces[2].recalculateStyle(actualRangePieces[1]);
+					actualRangePieces[0].recalculateStyleRelativeTo(
+						actualRangePieces[1]
+					);
+					actualRangePieces[1].recalculateStyleRelativeTo(
+						actualRangePieces[0]
+					);
+					actualRangePieces[1].recalculateStyleRelativeTo(
+						actualRangePieces[2]
+					);
+					actualRangePieces[2].recalculateStyleRelativeTo(
+						actualRangePieces[1]
+					);
 					break;
 				default:
 					break;
 			}
 
-			let cursors = [];
-			for (let r of state.selection.ranges) {
-				let prim = r == state.selection.main;
-				if (r.empty ? !prim || CanHidePrimary : conf.drawRangeCursor) {
-					let piece = measureCursor(this.view, r, prim);
-					if (piece) cursors.push(piece);
-				}
-			}
-
-			return { rangePieces, cursors: [] };
+			return { rangePieces };
 		}
 
-		drawSel({ rangePieces, cursors }: Measure) {
+		drawSelection({ rangePieces }: Measure) {
 			if (
 				rangePieces.length != this.rangePieces.length ||
-				rangePieces.some((p, i) => !p.eq(this.rangePieces[i]))
+				rangePieces.some((p, i) => !p.equal(this.rangePieces[i]))
 			) {
 				this.selectionLayer.textContent = "";
 				for (let p of rangePieces)
 					this.selectionLayer.appendChild(p.draw());
 				this.rangePieces = rangePieces;
 			}
-			if (
-				cursors.length != this.cursors.length ||
-				cursors.some((c, i) => !c.eq(this.cursors[i]))
-			) {
-				let oldCursors = this.cursorLayer.children;
-				if (oldCursors.length !== cursors.length) {
-					this.cursorLayer.textContent = "";
-					for (const c of cursors)
-						this.cursorLayer.appendChild(c.draw());
-				} else {
-					cursors.forEach((c, idx) =>
-						c.adjust(oldCursors[idx] as HTMLElement)
-					);
-				}
-				this.cursors = cursors;
-			}
 		}
 
 		destroy() {
-			this.selectionLayer.remove();
-			this.cursorLayer.remove();
+			if (!this.selectionLayer) {
+				return;
+			}
+
+			this.selectionLayer.childNodes.forEach((node) => {
+				if (
+					node.nodeType === Node.ELEMENT_NODE &&
+					node instanceof HTMLElement &&
+					node.classList.contains("cm-selectionBackground")
+				) {
+					node.style.borderRadius = "0";
+				}
+			});
 		}
 	}
 );
@@ -477,23 +468,4 @@ function measureRange(view: EditorView, range: SelectionRange): Piece[] {
 		let y = contentRect.top + (top ? block.top : block.bottom);
 		return { top: y, bottom: y, horizontal: [] };
 	}
-}
-
-function measureCursor(
-	view: EditorView,
-	cursor: SelectionRange,
-	primary: boolean
-): Piece | null {
-	let pos = view.coordsAtPos(cursor.head, cursor.assoc || 1);
-	if (!pos) return null;
-	let base = getBase(view);
-	return new Piece(
-		pos.left - base.left,
-		pos.top - base.top,
-		-1,
-		pos.bottom - pos.top,
-		primary
-			? "cm-cursor cm-cursor-primary"
-			: "cm-cursor cm-cursor-secondary"
-	);
 }

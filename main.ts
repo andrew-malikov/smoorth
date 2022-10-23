@@ -1,6 +1,6 @@
 import { Plugin } from "obsidian";
 import { EditorView } from "@codemirror/view";
-import { drawSelection } from "selections";
+import { drawSelection } from "src/selection";
 
 export default class Smoorth extends Plugin {
 	async onload() {
@@ -12,20 +12,6 @@ export default class Smoorth extends Plugin {
 }
 
 export const SmoorthTheme = EditorView.theme({
-	".cm-line": {
-		outline: "solid #0002",
-		outlineWidth: "0",
-		transition: "all 300ms",
-	},
-
-	".cm-active-line": {
-		background: "#0002",
-		border: "0 solid var(--background-modifier-accent)",
-		borderRadius: "0.2em",
-		outline: "solid #0002",
-		outlineWidth: "0.4em",
-	},
-
 	".cm-vimCursorLayer .cm-fat-cursor": {
 		border: "0 solid var(--text-highlight-bg)",
 		borderRadius: "0.1em",
@@ -36,7 +22,7 @@ export const SmoorthTheme = EditorView.theme({
 	},
 
 	".cm-cursorLayer, .cm-vimCursorLayer": {
-		animation:
-			"cursor-phase 0.5s ease-in-out 0s infinite alternate !important",
+		animationTimingFunction: "cubic-bezier(0.85, 0, 0.15, 1) !important",
+		animationIterationCount: "20 !important",
 	},
 });
