@@ -1,8 +1,11 @@
+![GitHub](https://img.shields.io/github/license/vallandemorty/smoorth?label=LICENSE)
+![GitHub manifest version](https://img.shields.io/github/manifest-json/v/vallandemorty/smoorth?label=VERSION)
+
 # Smoorth
 
 Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and round one. Works only with enabled Vim mode during editing.
 
-<p float="center">
+<p align="center">
  <img src="./assets/dark_01.png" width="256">
  <img src="./assets/dark_02.png" width="256">
  <img src="./assets/dark_03.png" width="256">
