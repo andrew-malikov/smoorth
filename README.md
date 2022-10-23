@@ -19,13 +19,12 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 </p>
 
 <div align="center">
-	
-| Dark | Light |
-| - | - |
-| <video src="https://user-images.githubusercontent.com/35894527/197403985-435c6bff-1004-4b6b-b3bb-3ab13a8ab4c2.mov"></video> | <video src="https://user-images.githubusercontent.com/35894527/197403980-884bda0d-0ba1-4b59-8f2e-f1454f959635.mov"></video> |
+
+Dark                                                                                                                        | Light
+----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------
+<video src="https://user-images.githubusercontent.com/35894527/197403985-435c6bff-1004-4b6b-b3bb-3ab13a8ab4c2.mov"></video> | <video src="https://user-images.githubusercontent.com/35894527/197403980-884bda0d-0ba1-4b59-8f2e-f1454f959635.mov"></video>
 
 </div>
-
 
 ## Features
 
