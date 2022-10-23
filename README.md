@@ -1,12 +1,28 @@
 # Smoorth
 
-Replaces the default Obsidian caret with a smooth and round one. Works best with enabled Vim mode.
+Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and round one. Works only with enabled Vim mode during editing.
 
-<p float="middle">
- <img src="./assets/editor_01.png" width="256">
- <img src="./assets/editor_02.png" width="256">
- <img src="./assets/editor_03.png" width="256">
+<p float="center">
+ <img src="./assets/dark_01.png" width="256">
+ <img src="./assets/dark_02.png" width="256">
+ <img src="./assets/dark_03.png" width="256">
 </p>
+
+<p align="center">
+ <img src="./assets/light_01.png" width="512">
+</p>
+
+## Features
+
+- Smooth caret which stops blinking after 20 iterations.
+- Round selection.
+
+## Related
+
+- Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into functional style while cursor is fully based on Obsidian's one.
+- [The blink animation](https://easings.net/#easeInOutCirc).
+
+---
 
 ## Releasing new releases
 
