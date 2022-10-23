@@ -6,5 +6,5 @@
 	"description": "A smooth and round caret.",
 	"author": "Andrew Malikov",
 	"authorUrl": "https://github.com/VallanDeMorty",
-	"isDesktopOnly": false
+	"isDesktopOnly": true
 }
