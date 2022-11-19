@@ -18,14 +18,6 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
  <img src="./assets/dark_03.png" width="256">
 </p>
 
-<div align="center">
-
-Dark                                                                                                                        | Light
-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------
-<video src="https://user-images.githubusercontent.com/35894527/197403985-435c6bff-1004-4b6b-b3bb-3ab13a8ab4c2.mov"></video> | <video src="https://user-images.githubusercontent.com/35894527/197403980-884bda0d-0ba1-4b59-8f2e-f1454f959635.mov"></video>
-
-</div>
-
 ## Features
 
 - Smooth caret which stops blinking after 20 iterations.
@@ -33,14 +25,14 @@ Dark                                                                            
 
 ## Related
 
-- Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into functional style while cursor is fully based on Obsidian's one.
+- Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into a functional style while the cursor is fully based on Obsidian's one.
 - [The blink animation](https://easings.net/#easeInOutCirc).
 
 ## Releasing new releases
 
 - Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
 - Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: <https://github.com/obsidianmd/obsidian-sample-plugin/releases>
+Create a new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: <https://github.com/obsidianmd/obsidian-sample-plugin/releases>
 - Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
 - Publish the release.
 

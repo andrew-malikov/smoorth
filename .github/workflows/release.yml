@@ -1,14 +1,14 @@
-name: CI
+name: Release
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    tags:
+      - "*"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
 
     strategy:
       matrix:
@@ -30,5 +30,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Ensure version
+        run: pnpm version
+
       - name: Build
         run: pnpm build
+
+      - name: Create a release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            ./main.js
+            ./manifest.json
