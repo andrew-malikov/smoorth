@@ -25,4 +25,21 @@ export const SmoorthTheme = EditorView.theme({
 		animationTimingFunction: "cubic-bezier(0.85, 0, 0.15, 1) !important",
 		animationIterationCount: "20 !important",
 	},
+
+	".HyperMD-codeblock-bg": {
+		backgroundColor: "transparent !important",
+		border: "0 solid var(--code-background)",
+		borderLeftWidth: "0.2em",
+		borderRightWidth: "0.2em",
+	},
+
+	".HyperMD-codeblock-begin-bg": {
+		backgroundColor: "transparent !important",
+		borderTopWidth: "0.2em",
+	},
+
+	".HyperMD-codeblock-end-bg": {
+		backgroundColor: "transparent !important",
+		borderBottomWidth: "0.2em",
+	},
 });

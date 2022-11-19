@@ -31,7 +31,7 @@ jobs:
         run: pnpm install
 
       - name: Ensure version
-        run: pnpm version
+        run: pnpm run version
 
       - name: Build
         run: pnpm build
