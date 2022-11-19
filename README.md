@@ -6,7 +6,8 @@ Smoorth
 
 ![GitHub](https://img.shields.io/github/license/vallandemorty/smoorth?label=LICENSE)
 ![GitHub manifest version](https://img.shields.io/github/manifest-json/v/vallandemorty/smoorth?label=VERSION)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/VallanDeMorty/smoorth/master?label=CI)
+[![CI](https://github.com/VallanDeMorty/smoorth/actions/workflows/ci.yml/badge.svg)](https://github.com/VallanDeMorty/smoorth/actions/workflows/ci.yml)
+[![Release](https://github.com/VallanDeMorty/smoorth/actions/workflows/release.yml/badge.svg)](https://github.com/VallanDeMorty/smoorth/actions/workflows/release.yml)
 
 </div>
 
