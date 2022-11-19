@@ -4,7 +4,6 @@ Smoorth
 
 <div align="center">
 
-![GitHub](https://img.shields.io/github/license/vallandemorty/smoorth?label=LICENSE)
 ![GitHub manifest version](https://img.shields.io/github/manifest-json/v/vallandemorty/smoorth?label=VERSION)
 [![CI](https://github.com/VallanDeMorty/smoorth/actions/workflows/ci.yml/badge.svg)](https://github.com/VallanDeMorty/smoorth/actions/workflows/ci.yml)
 [![Release](https://github.com/VallanDeMorty/smoorth/actions/workflows/release.yml/badge.svg)](https://github.com/VallanDeMorty/smoorth/actions/workflows/release.yml)
@@ -24,6 +23,10 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 - Smooth caret which stops blinking after 20 iterations.
 - Round selection.
 
+## Installation via BRAT
+
+- [How to BRAT](https://github.com/TfTHacker/obsidian42-brat#Quick-Guide-for-using-BRAT)
+
 ## Related
 
 - Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into a functional style while the cursor is fully based on Obsidian's one.
@@ -31,21 +34,12 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 
 ## Releasing new releases
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-Create a new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: <https://github.com/obsidianmd/obsidian-sample-plugin/releases>
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+- Update the `manifest.json` with a new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
+- Update the `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
+- Tag the commit with a new version. Use the exact version number, don't include a prefix `v`. See here for an example: <https://github.com/obsidianmd/obsidian-sample-plugin/releases>
 
 > You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
 > The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
-
-## Adding your plugin to the community plugin list
-
-- Check <https://github.com/obsidianmd/obsidian-releases/blob/master/plugin-review.md>
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at <https://github.com/obsidianmd/obsidian-releases> to add your plugin.
 
 ## How to use
 
