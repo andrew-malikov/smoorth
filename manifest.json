@@ -1,7 +1,7 @@
 {
 	"id": "smoorth",
 	"name": "Smoorth",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"minAppVersion": "1.0.1",
 	"description": "A smooth and round caret.",
 	"author": "Andrew Malikov",

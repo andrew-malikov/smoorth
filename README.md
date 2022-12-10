@@ -21,7 +21,6 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 ## Features
 
 - Smooth caret which stops blinking after 20 iterations.
-- Round selection.
 
 ## Installation via BRAT
 
@@ -29,7 +28,6 @@ Replaces the default [Obsidian](https://obsidian.md/) caret with a smooth and ro
 
 ## Related
 
-- Based on the default selection [extension](https://github.com/codemirror/view/blob/main/src/draw-selection.ts). The actual code is a bit transformed into a functional style while the cursor is fully based on Obsidian's one.
 - [The blink animation](https://easings.net/#easeInOutCirc).
 
 ## Releasing new releases

@@ -1,11 +1,9 @@
 import { Plugin } from "obsidian";
 import { EditorView } from "@codemirror/view";
-import { drawSelection } from "src/selection";
 
 export default class Smoorth extends Plugin {
 	async onload() {
 		this.registerEditorExtension(SmoorthTheme);
-		this.registerEditorExtension(drawSelection());
 	}
 
 	onunload() {}
